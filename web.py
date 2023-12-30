@@ -11,8 +11,11 @@ def add_todo():
 
 st.title("Tareas Pendientes")
 st.subheader("Esta es mi App para hacer cosas.")
-st.write("Esta App es para aumentar tu productividad.")
+st.write("<h1>Esta App es para aumentar tu <b>productividad</b>.<h1>",
+         unsafe_allow_html=True)
 
+st.text_input(label="", placeholder="Agregar nuevas tareas...",
+              on_change=add_todo, key='new_todo')
 
 for index, todo in enumerate(todos):
     checkbox = st.checkbox(todo, key=todo)
@@ -21,6 +24,3 @@ for index, todo in enumerate(todos):
         functions.write_todos(todos)
         del st.session_state[todo]
         st.experimental_rerun()
-
-st.text_input(label="", placeholder="Agregar nuevas tareas...",
-              on_change=add_todo, key='new_todo')
